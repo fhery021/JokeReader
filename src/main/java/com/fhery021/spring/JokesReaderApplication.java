@@ -14,13 +14,6 @@ public class JokesReaderApplication {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(JokesReaderApplication.class, args);
 
-		JokeReader reader = (JokeReader) applicationContext.getBean("jokeReader");
-		List<Joke> jokes =  reader.processInputFile();
-		System.out.println(jokes.get(0).getJoke());
-		System.out.println(jokes.get(1).getJoke());
-		System.out.println(jokes.size());
-
-
 	}
 
 }
