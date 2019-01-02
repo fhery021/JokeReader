@@ -20,6 +20,8 @@ public class Joke {
         Joke = joke;
     }
 
+    public Joke(){}
+
 
     public String getJoke() {
         return Joke;
