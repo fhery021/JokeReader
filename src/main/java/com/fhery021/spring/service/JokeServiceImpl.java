@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -20,20 +21,28 @@ public class JokeServiceImpl implements JokeService{
     private JokeRepository jokeRepository;
 
     @Override
+    public Optional<Joke> getById(Long id){
+        return jokeRepository.findById(id);
+    }
+
+    @Override
     public Joke getRandomJoke() {
         long size  = jokeRepository.count();
 
         return jokeRepository.findById(ThreadLocalRandom.current().nextLong(1, size)).get();
     }
 
-    // TODO
     @Override
     public List<Joke> getJokesByIdRange(Long begin, Long end) {
-        return null;
+        List<Joke> jokeList = new ArrayList<>();
+        for (long id=begin; id<=end; id++){
+           jokeRepository.findById(id).ifPresent(jokeList::add);
+        }
+        return jokeList;
     }
 
     @Override
-    public void saveJokes(List<Joke> jokes) {
+    public void saveAll(List<Joke> jokes) {
         jokeRepository.saveAll(jokes);
     }
 
@@ -49,5 +58,13 @@ public class JokeServiceImpl implements JokeService{
         return jokeList;
     }
 
+    @Override
+    public void deleteAll() {
+        jokeRepository.deleteAll();
+    }
 
+    @Override
+    public Long count() {
+        return jokeRepository.count();
+    }
 }
