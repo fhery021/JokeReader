@@ -36,7 +36,7 @@ public class JokeReader {
         return inputList;
     }
 
-    private Function<String, Joke> mapToItem = (line) ->{
+    private final Function<String, Joke> mapToItem = (line) ->{
         String[] p = line.split(",\"");
 
         if (p[1] != null && p[1].trim().length() > 0){

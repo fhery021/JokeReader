@@ -16,9 +16,11 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class JokeServiceImpl implements JokeService{
 
-
-    @Autowired
     private JokeRepository jokeRepository;
+
+    public JokeServiceImpl(JokeRepository jokeRepository) {
+        this.jokeRepository = jokeRepository;
+    }
 
     @Override
     public Optional<Joke> getById(Long id){

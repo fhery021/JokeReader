@@ -18,11 +18,14 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping(path = "/jokes")
 public class JokeController {
 
-    @Autowired
     private JokeReader jokeReader;
 
-    @Autowired
     private JokeService jokeService;
+
+    public JokeController(JokeReader jokeReader, JokeService service) {
+        this.jokeReader = jokeReader;
+        this.jokeService = service;
+    }
 
     @GetMapping(path = "/initDB")
     public @ResponseBody String addAll(){
