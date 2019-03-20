@@ -1,5 +1,7 @@
 package com.fhery021.spring.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,11 +15,17 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Joke {
+public class Joke extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Builder
+    public Joke(Long id, String joke, Long views, Long likes, Long dislikes, Set<Rate> rates) {
+        super(id);
+        Joke = joke;
+        this.views = views;
+        this.likes = likes;
+        this.dislikes = dislikes;
+        this.rates = rates;
+    }
 
     private String Joke;
 

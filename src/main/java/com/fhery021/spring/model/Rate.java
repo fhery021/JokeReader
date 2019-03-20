@@ -8,13 +8,15 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Rate implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Rate extends BaseEntity{
+
+    @Builder
+    public Rate(Long id, Joke joke, byte stars) {
+        super(id);
+        this.stars = stars;
+        this.joke = joke;
+    }
 
     private byte stars;
 
