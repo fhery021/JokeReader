@@ -1,6 +1,7 @@
 package com.fhery021.spring.controller;
 
 import com.fhery021.spring.csv.JokeReader;
+import com.fhery021.spring.exceptions.NotFoundException;
 import com.fhery021.spring.model.Joke;
 import com.fhery021.spring.service.JokeService;
 import org.springframework.stereotype.Controller;
@@ -66,7 +67,8 @@ public class JokeController {
     @ResponseBody
     public List<Joke> getRandomJokes(@PathVariable Long size){
         if (size == null){
-            return null;
+            // do this if joke not found
+            throw new NotFoundException("Size is null");
         }
         List<Joke> jokes = new ArrayList<>();
         final Long total = jokeService.count();
